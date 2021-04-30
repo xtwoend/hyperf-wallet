@@ -48,9 +48,15 @@ class ConfigProvider
             'publish' => [
                 [
                     'id' => 'config',
-                    'description' => 'The config for config center.',
+                    'description' => 'The config for hyperf wallet.',
                     'source' => __DIR__ . '/../publish/wallet.php',
                     'destination' => BASE_PATH . '/config/autoload/wallet.php',
+                ],
+                [
+                    'id' => 'migration',
+                    'description' => 'Migration database.',
+                    'source' => __DIR__ . '/../database/migrations/*',
+                    'destination' => BASE_PATH . '/migrations',
                 ],
             ],
         ];

@@ -1,24 +1,34 @@
 <?php
 
 use Hyperf\Database\Schema\Schema;
-use Xtwoend\Wallet\Models\Transfer;
 use Hyperf\Database\Schema\Blueprint;
-use Xtwoend\Wallet\Models\Transaction;
 use Hyperf\Database\Migrations\Migration;
 
 class CreateTransfersTable extends Migration
 {
     /**
-     * @return void
+     * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create($this->table(), function (Blueprint $table) {
+        Schema::create('transfers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('from');
             $table->morphs('to');
+
+            $enums = [
+                Transfer::STATUS_EXCHANGE,
+                Transfer::STATUS_TRANSFER,
+                Transfer::STATUS_PAID,
+                Transfer::STATUS_REFUND,
+                Transfer::STATUS_GIFT,
+            ];
+            $table->enum('status', $enums)->default(Transfer::STATUS_PAID);
+            $table->enum('status_last', $enums)->nullable();
             $table->unsignedBigInteger('deposit_id');
             $table->unsignedBigInteger('withdraw_id');
+            $table->decimal('discount', 64, 0)->default(0);
+            $table->decimal('fee', 64, 0)->default(0);
             $table->uuid('uuid')->unique();
             $table->timestamps();
 
@@ -31,30 +41,15 @@ class CreateTransfersTable extends Migration
                 ->references('id')
                 ->on($this->transactionTable())
                 ->onDelete('cascade');
+
         });
     }
 
     /**
-     * @return string
-     */
-    protected function table(): string
-    {
-        return (new Transfer())->getTable();
-    }
-
-    /**
-     * @return string
-     */
-    protected function transactionTable(): string
-    {
-        return (new Transaction())->getTable();
-    }
-
-    /**
-     * @return void
+     * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::drop($this->table());
+        Schema::dropIfExists('transfers');
     }
 }
