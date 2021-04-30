@@ -1,6 +1,7 @@
 <?php
 
 use Hyperf\Database\Schema\Schema;
+use Xtwoend\Wallet\Models\Transfer;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Migrations\Migration;
 
@@ -34,12 +35,12 @@ class CreateTransfersTable extends Migration
 
             $table->foreign('deposit_id')
                 ->references('id')
-                ->on($this->transactionTable())
+                ->on('transactions')
                 ->onDelete('cascade');
 
             $table->foreign('withdraw_id')
                 ->references('id')
-                ->on($this->transactionTable())
+                ->on('transactions')
                 ->onDelete('cascade');
 
         });
