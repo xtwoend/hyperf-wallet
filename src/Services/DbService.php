@@ -3,10 +3,10 @@
 namespace Xtwoend\Wallet\Services;
 
 use Closure;
-use Illuminate\Database\ConnectionInterface;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Support\Facades\DB;
 use Throwable;
+use Hyperf\DbConnection\Db;
+use Hyperf\Database\Query\Expression;
+use Hyperf\Database\ConnectionInterface;
 
 /**
  * Class DbService.
@@ -20,7 +20,7 @@ class DbService
      */
     public function connection(): ConnectionInterface
     {
-        return DB::connection(config('wallet.database.connection'));
+        return Db::connection(config('wallet.database.connection'));
     }
 
     /**

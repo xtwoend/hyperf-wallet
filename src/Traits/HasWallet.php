@@ -2,23 +2,23 @@
 
 namespace Xtwoend\Wallet\Traits;
 
-use function app;
-use Xtwoend\Wallet\Exceptions\AmountInvalid;
-use Xtwoend\Wallet\Exceptions\BalanceIsEmpty;
-use Xtwoend\Wallet\Exceptions\InsufficientFunds;
-use Xtwoend\Wallet\Interfaces\Mathable;
-use Xtwoend\Wallet\Interfaces\Storable;
+use Throwable;
+use function make;
+use function config;
+use Xtwoend\Wallet\Models\Transfer;
+use Hyperf\Database\Model\Collection;
 use Xtwoend\Wallet\Interfaces\Wallet;
 use Xtwoend\Wallet\Models\Transaction;
-use Xtwoend\Wallet\Models\Transfer;
-use Xtwoend\Wallet\Models\Wallet as WalletModel;
-use Xtwoend\Wallet\Services\CommonService;
 use Xtwoend\Wallet\Services\DbService;
+use Xtwoend\Wallet\Interfaces\Mathable;
+use Xtwoend\Wallet\Interfaces\Storable;
+use Xtwoend\Wallet\Services\CommonService;
 use Xtwoend\Wallet\Services\WalletService;
-use function config;
+use Xtwoend\Wallet\Exceptions\AmountInvalid;
+use Xtwoend\Wallet\Exceptions\BalanceIsEmpty;
 use Hyperf\Database\Model\Relations\MorphMany;
-use Illuminate\Support\Collection;
-use Throwable;
+use Xtwoend\Wallet\Exceptions\InsufficientFunds;
+use Xtwoend\Wallet\Models\Wallet as WalletModel;
 
 /**
  * Trait HasWallet.

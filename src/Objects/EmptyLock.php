@@ -2,10 +2,10 @@
 
 namespace Xtwoend\Wallet\Objects;
 
-use Illuminate\Contracts\Cache\Lock;
-use Illuminate\Support\Str;
+use Hyperf\Utils\Str;
 
-class EmptyLock implements Lock
+
+class EmptyLock
 {
     /**
      * @var string

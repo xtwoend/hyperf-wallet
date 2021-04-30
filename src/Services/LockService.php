@@ -2,13 +2,10 @@
 
 namespace Xtwoend\Wallet\Services;
 
-use Xtwoend\Wallet\Objects\EmptyLock;
-use Illuminate\Contracts\Cache\Lock;
-use Illuminate\Contracts\Cache\LockProvider;
-use Illuminate\Contracts\Cache\Store;
+use Hyperf\Utils\Str;
+use Hyperf\Cache\Cache;
 use Hyperf\DbConnection\Model\Model;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
+use Xtwoend\Wallet\Objects\EmptyLock;
 
 class LockService
 {
@@ -75,16 +72,16 @@ class LockService
      * @param string $name
      * @param int $seconds
      *
-     * @return Lock
+     * @return 
      */
-    protected function lockProvider($self, string $name, int $seconds): Lock
+    protected function lockProvider($self, string $name, int $seconds)
     {
         $store = $this->cache();
         $enabled = $store && config('wallet.lock.enabled', false);
 
         // fixme: CodeClimate
         // @codeCoverageIgnoreStart
-        if ($enabled && $store instanceof LockProvider) {
+        if ($enabled) {
             $class = \get_class($self);
             $uniqId = $class.$this->uniqId;
             if ($self instanceof Model) {

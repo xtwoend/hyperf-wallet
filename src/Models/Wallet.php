@@ -3,21 +3,21 @@
 namespace Xtwoend\Wallet\Models;
 
 use function app;
-use function array_key_exists;
+use function config;
+use Hyperf\Utils\Str;
 use function array_merge;
-use Xtwoend\Wallet\Interfaces\Confirmable;
-use Xtwoend\Wallet\Interfaces\Customer;
-use Xtwoend\Wallet\Interfaces\Exchangeable;
-use Xtwoend\Wallet\Interfaces\WalletFloat;
-use Xtwoend\Wallet\Services\WalletService;
+use function array_key_exists;
+use Xtwoend\Wallet\Traits\HasGift;
+use Hyperf\DbConnection\Model\Model;
 use Xtwoend\Wallet\Traits\CanConfirm;
 use Xtwoend\Wallet\Traits\CanExchange;
 use Xtwoend\Wallet\Traits\CanPayFloat;
-use Xtwoend\Wallet\Traits\HasGift;
-use function config;
-use Hyperf\DbConnection\Model\Model;
+use Xtwoend\Wallet\Interfaces\Customer;
+use Xtwoend\Wallet\Interfaces\Confirmable;
+use Xtwoend\Wallet\Interfaces\WalletFloat;
+use Xtwoend\Wallet\Services\WalletService;
+use Xtwoend\Wallet\Interfaces\Exchangeable;
 use Hyperf\Database\Model\Relations\MorphTo;
-use Illuminate\Support\Str;
 
 /**
  * Class Wallet.

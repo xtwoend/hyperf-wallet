@@ -2,7 +2,7 @@
 
 namespace Xtwoend\Wallet\Services;
 
-use function app;
+use function make;
 use Xtwoend\Wallet\Exceptions\AmountInvalid;
 use Xtwoend\Wallet\Interfaces\Customer;
 use Xtwoend\Wallet\Interfaces\Discount;

@@ -2,12 +2,13 @@
 
 namespace Xtwoend\Wallet\Traits;
 
-use function array_key_exists;
-use Xtwoend\Wallet\Models\Wallet as WalletModel;
 use function config;
-use Hyperf\DbConnection\Model\ModelNotFoundException;
+use function array_key_exists;
+use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\MorphMany;
-use Illuminate\Support\Collection;
+use Xtwoend\Wallet\Models\Wallet as WalletModel;
+use Hyperf\DbConnection\Model\ModelNotFoundException;
+
 
 /**
  * Trait HasWallets
