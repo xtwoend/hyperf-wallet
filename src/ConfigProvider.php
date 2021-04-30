@@ -13,8 +13,17 @@ declare(strict_types=1);
 namespace Xtwoend\Wallet;
 
 use Xtwoend\Wallet\Simple\Rate;
+use Xtwoend\Wallet\Simple\Store;
+use Xtwoend\Wallet\Simple\BrickMath;
+use Xtwoend\Wallet\Services\DbService;
+use Xtwoend\Wallet\Interfaces\Mathable;
 use Xtwoend\Wallet\Interfaces\Rateable;
-
+use Xtwoend\Wallet\Interfaces\Storable;
+use Xtwoend\Wallet\Services\LockService;
+use Xtwoend\Wallet\Services\MetaService;
+use Xtwoend\Wallet\Services\CommonService;
+use Xtwoend\Wallet\Services\WalletService;
+use Xtwoend\Wallet\Services\ExchangeService;
 
 class ConfigProvider
 {
