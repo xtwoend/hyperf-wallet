@@ -54,9 +54,21 @@ class ConfigProvider
                 ],
                 [
                     'id' => 'migration',
-                    'description' => 'Migration database.',
-                    'source' => __DIR__ . '/../database/migrations/*',
-                    'destination' => BASE_PATH . '/migrations',
+                    'description' => 'Migration database wellet table.',
+                    'source' => __DIR__ . '/../database/2021_04_30_073129_create_wallets_table.php',
+                    'destination' => BASE_PATH . '/migrations/2021_04_30_073129_create_wallets_table.php',
+                ],
+                [
+                    'id' => 'migration',
+                    'description' => 'Migration database transfer table.',
+                    'source' => __DIR__ . '/../database/2021_04_30_073147_create_transfers_table.php',
+                    'destination' => BASE_PATH . '/migrations/2021_04_30_073147_create_transfers_table.php',
+                ],
+                [
+                    'id' => 'migration',
+                    'description' => 'Migration database transaction table.',
+                    'source' => __DIR__ . '/../database/2021_04_30_073157_create_transactions_table.php',
+                    'destination' => BASE_PATH . '/migrations/2021_04_30_073157_create_transactions_table.php',
                 ],
             ],
         ];
