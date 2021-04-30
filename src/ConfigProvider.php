@@ -67,8 +67,8 @@ class ConfigProvider
                 [
                     'id' => 'migration',
                     'description' => 'Migration database transaction table.',
-                    'source' => __DIR__ . '/../database/2021_04_30_073157_create_transactions_table.php',
-                    'destination' => BASE_PATH . '/migrations/2021_04_30_073157_create_transactions_table.php',
+                    'source' => __DIR__ . '/../database/2021_04_30_073137_create_transactions_table.php',
+                    'destination' => BASE_PATH . '/migrations/2021_04_30_073137_create_transactions_table.php',
                 ],
             ],
         ];
