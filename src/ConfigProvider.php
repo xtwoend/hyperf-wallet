@@ -13,8 +13,14 @@ declare(strict_types=1);
 namespace Xtwoend\Wallet;
 
 use Xtwoend\Wallet\Simple\Rate;
+use Xtwoend\Wallet\Objects\Cart;
 use Xtwoend\Wallet\Simple\Store;
+use Xtwoend\Wallet\Models\Wallet;
+use Xtwoend\Wallet\Objects\Bring;
+use Xtwoend\Wallet\Models\Transfer;
 use Xtwoend\Wallet\Simple\BrickMath;
+use Xtwoend\Wallet\Objects\EmptyLock;
+use Xtwoend\Wallet\Objects\Operation;
 use Xtwoend\Wallet\Services\DbService;
 use Xtwoend\Wallet\Interfaces\Mathable;
 use Xtwoend\Wallet\Interfaces\Rateable;
@@ -39,7 +45,17 @@ class ConfigProvider
                 CommonService::class => CommonService::class,
                 WalletService::class => WalletService::class,
                 LockService::class => LockService::class,
-                MetaService::class => MetaService::class
+                MetaService::class => MetaService::class,
+                Transaction::class => Transaction::class,
+                // model
+                // Transfer::class => Transfer::class,
+                // Wallet::class => Wallet::class,
+                // Bring::class => Bring::class,
+
+                // objects
+                Cart::class => Cart::class,
+                EmptyLock::class => EmptyLock::class,
+                Operation::class => Operation::class,
             ],
             'processes' => [
                 // 

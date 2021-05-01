@@ -2,7 +2,7 @@
 
 namespace Xtwoend\Wallet\Traits;
 
-use function app;
+use function make;
 use Xtwoend\Wallet\Exceptions\AmountInvalid;
 use Xtwoend\Wallet\Exceptions\BalanceIsEmpty;
 use Xtwoend\Wallet\Exceptions\InsufficientFunds;

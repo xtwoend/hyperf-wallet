@@ -118,7 +118,7 @@ class WalletService
          * @var WalletModel $wallet
          */
         $wallet = $object;
-
+        
         if (! ($object instanceof WalletModel)) {
             /**
              * @var HasWallet $object

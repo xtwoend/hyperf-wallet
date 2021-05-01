@@ -2,7 +2,7 @@
 
 namespace Xtwoend\Wallet\Models;
 
-use function app;
+use function make;
 use function config;
 use Hyperf\Utils\Str;
 use function array_merge;
@@ -159,5 +159,15 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
         return $currencies[$this->slug] ??
             $this->meta['currency'] ??
             Str::upper($this->slug);
+    }
+
+    /**
+     * Issue loop get attribute balance
+     *
+     * @return void
+     */
+    public function getBalanceAttribute()
+    {
+        return $this->attributes['balance'];
     }
 }
