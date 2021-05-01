@@ -48,10 +48,9 @@ class ConfigProvider
                 MetaService::class => MetaService::class,
                 Transaction::class => Transaction::class,
                 // model
-                // Transfer::class => Transfer::class,
-                // Wallet::class => Wallet::class,
-                // Bring::class => Bring::class,
-
+                Transfer::class => Transfer::class,
+                Wallet::class => Wallet::class,
+                Bring::class => Bring::class,
                 // objects
                 Cart::class => Cart::class,
                 EmptyLock::class => EmptyLock::class,

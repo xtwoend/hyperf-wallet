@@ -168,6 +168,6 @@ class Wallet extends Model implements Customer, WalletFloat, Confirmable, Exchan
      */
     public function getBalanceAttribute()
     {
-        return $this->attributes['balance'];
+        return $this->attributes['balance'] ?? 0;
     }
 }

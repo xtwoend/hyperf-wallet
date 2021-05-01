@@ -17,6 +17,7 @@ use Xtwoend\Wallet\Services\WalletService;
 use Xtwoend\Wallet\Exceptions\AmountInvalid;
 use Xtwoend\Wallet\Exceptions\BalanceIsEmpty;
 use Hyperf\Database\Model\Relations\MorphMany;
+use Xtwoend\Wallet\Exceptions\DifferentCurrency;
 use Xtwoend\Wallet\Exceptions\InsufficientFunds;
 use Xtwoend\Wallet\Models\Wallet as WalletModel;
 
@@ -130,6 +131,12 @@ trait HasWallet
      */
     public function transfer(Wallet $wallet, $amount, ?array $meta = null): Transfer
     {
+        // verify same currency
+        $from   = make(WalletService::class)->getWallet($this);
+        $to     = $wallet;
+        
+        $this->verifyCurrency($from, $to);
+        
         /** @var $this Wallet */
         make(CommonService::class)->verifyWithdraw($this, $amount);
 
@@ -221,6 +228,12 @@ trait HasWallet
         /** @var Wallet $self */
         $self = $this;
 
+        // verify same currency
+        $from   = make(WalletService::class)->getWallet($this);
+        $to     = $wallet;
+
+        $this->verifyCurrency($from, $to);
+
         return make(DbService::class)->transaction(static function () use ($self, $amount, $wallet, $meta) {
             return make(CommonService::class)
                 ->forceTransfer($self, $wallet, $amount, $meta);
@@ -239,5 +252,13 @@ trait HasWallet
         return make(WalletService::class)
             ->getWallet($this, false)
             ->morphMany(config('wallet.transfer.model', Transfer::class), 'from');
+    }
+
+    protected function verifyCurrency($from, $to)
+    {
+        if ($from->currency !== $to->currency) {
+            throw new DifferentCurrency(trans('wallet::errors.different_currency'));
+        }
+        return;
     }
 }
