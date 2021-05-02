@@ -2,18 +2,19 @@
 
 namespace Xtwoend\Wallet\Services;
 
+use Throwable;
 use function make;
-use Xtwoend\Wallet\Exceptions\AmountInvalid;
+use Xtwoend\Wallet\Traits\HasWallet;
+use Xtwoend\Wallet\Interfaces\Wallet;
+use Xtwoend\Wallet\Interfaces\Taxable;
 use Xtwoend\Wallet\Interfaces\Customer;
 use Xtwoend\Wallet\Interfaces\Discount;
 use Xtwoend\Wallet\Interfaces\Mathable;
-use Xtwoend\Wallet\Interfaces\MinimalTaxable;
 use Xtwoend\Wallet\Interfaces\Storable;
-use Xtwoend\Wallet\Interfaces\Taxable;
-use Xtwoend\Wallet\Interfaces\Wallet;
+use Xtwoend\Wallet\Exceptions\AmountInvalid;
+use Xtwoend\Wallet\Interfaces\MinimalTaxable;
 use Xtwoend\Wallet\Models\Wallet as WalletModel;
-use Xtwoend\Wallet\Traits\HasWallet;
-use Throwable;
+use Hyperf\Database\Model\ModelNotFoundException;
 
 class WalletService
 {
@@ -131,6 +132,28 @@ class WalletService
         }
 
         return $wallet;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function getWalletById(int $id, bool $autoSave = true): ?WalletModel
+    {
+        try {
+            $wallet = WalletModel::findOrFail($id);
+
+            if ($autoSave) {
+                $wallet->exists or $wallet->save();
+            }
+
+            return $wallet;
+            
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            return null;
+        }
     }
 
     /**

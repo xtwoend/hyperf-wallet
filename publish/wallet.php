@@ -118,6 +118,6 @@ return [
             'name' => 'Default Wallet',
             'slug' => 'default',
             'meta' => [],
-        ],
+        ]
     ],
 ];

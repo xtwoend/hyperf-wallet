@@ -57,6 +57,35 @@ trait HasWallets
             return null;
         }
     }
+    
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return WalletModel|null
+     */
+    public function getWalletById(int $id): ?WalletModel
+    {
+        try {
+            if (! $this->_loadedWallets && $this->relationLoaded('wallets')) {
+                $this->_loadedWallets = true;
+                $wallets = $this->getRelation('wallets');
+                foreach ($wallets as $wallet) {
+                    $this->_wallets[$wallet->slug] = $wallet;
+                }
+            }else {
+                $wallet = $this->wallets()->findOrFail($id);
+                if ($wallet) {
+                    $slug = $wallet->slug;
+                    $this->_wallets[$slug] = $wallet;
+                }
+            }
+
+            return $this->_wallets[$slug];
+        } catch (ModelNotFoundException $modelNotFoundException) {
+            return null;
+        }
+    }
 
     /**
      * Get wallet by slug.
