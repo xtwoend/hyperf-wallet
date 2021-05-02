@@ -51,5 +51,8 @@ class Rate implements Rateable
     /**
      * {@inheritdoc}
      */
-    abstract public function getRate(Wallet $wallet);
+    public function getRate(Wallet $wallet)
+    {
+        return 1;
+    }
 }
