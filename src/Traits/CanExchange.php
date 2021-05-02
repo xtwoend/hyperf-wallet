@@ -55,7 +55,10 @@ trait CanExchange
                 $math = make(Mathable::class);
                 $rate = make(ExchangeService::class)->rate($from, $to);
                 $fee = make(WalletService::class)->fee($to, $amount);
-
+                $meta = array_merge($meta ?? [], [
+                    'rate' => make(ExchangeService::class)->getRate($from, $to)
+                ]);
+                    var_dump($meta);
                 $withdraw = make(CommonService::class)
                     ->forceWithdraw($from, $math->add($amount, $fee), $meta);
 
@@ -69,6 +72,7 @@ trait CanExchange
                         ->setDeposit($deposit)
                         ->setWithdraw($withdraw)
                         ->setFrom($from)
+                        ->setMeta($meta)
                         ->setFee($fee)
                         ->setTo($to),
                 ]);

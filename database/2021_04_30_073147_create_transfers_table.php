@@ -26,6 +26,7 @@ class CreateTransfersTable extends Migration
             ];
             $table->enum('status', $enums)->default(Transfer::STATUS_PAID);
             $table->enum('status_last', $enums)->nullable();
+            $table->json('meta')->nullable();
             $table->unsignedBigInteger('deposit_id');
             $table->unsignedBigInteger('withdraw_id');
             $table->decimal('discount', 64, 0)->default(0);

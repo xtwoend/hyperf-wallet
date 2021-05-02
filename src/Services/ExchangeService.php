@@ -19,4 +19,12 @@ class ExchangeService
             ->withCurrency($from)
             ->convertTo($to);
     }
+
+    public function getRate(Wallet $from, Wallet $to)
+    {
+        return make(Rateable::class)
+            ->withAmount(1)
+            ->withCurrency($from)
+            ->getRate($to);
+    }
 }

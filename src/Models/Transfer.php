@@ -37,6 +37,7 @@ class Transfer extends Model
      */
     protected $fillable = [
         'status',
+        'status_last',
         'discount',
         'deposit_id',
         'withdraw_id',
@@ -46,6 +47,7 @@ class Transfer extends Model
         'to_id',
         'uuid',
         'fee',
+        'meta'
     ];
 
     /**
@@ -54,6 +56,7 @@ class Transfer extends Model
     protected $casts = [
         'deposit_id' => 'int',
         'withdraw_id' => 'int',
+        'meta' => 'json'
     ];
 
     /**

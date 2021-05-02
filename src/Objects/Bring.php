@@ -51,6 +51,11 @@ class Bring
     protected $discount;
 
     /**
+     * @var json
+     */
+    protected $meta;
+
+    /**
      * Bring constructor.
      *
      * @throws
@@ -219,6 +224,27 @@ class Bring
     }
 
     /**
+     * @param array $meta
+     * @return self
+     */
+    public function setMeta(array $meta): self
+    {
+        $this->meta = $meta;
+        
+        return $this;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return array
+     */
+    public function getMeta(): array
+    {
+        return (array) $this->meta;
+    }
+
+    /**
      * @return Transfer
      *
      * @throws
@@ -247,6 +273,7 @@ class Bring
             'discount' => $this->getDiscount(),
             'fee' => $this->getFee(),
             'uuid' => $this->getUuid(),
+            'meta' => $this->getMeta()
         ];
     }
 }
