@@ -24,4 +24,12 @@ interface Rateable
      * @return int|float
      */
     public function convertTo(Wallet $wallet);
+
+    /**
+     * Undocumented function
+     *
+     * @param Wallet $wallet
+     * @return void
+     */
+    public function getRate(Wallet $wallet);
 }
