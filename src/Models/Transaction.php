@@ -2,15 +2,16 @@
 
 namespace Xtwoend\Wallet\Models;
 
-use function array_merge;
-use Xtwoend\Wallet\Interfaces\Mathable;
-use Xtwoend\Wallet\Interfaces\Wallet;
-use Xtwoend\Wallet\Models\Wallet as WalletModel;
-use Xtwoend\Wallet\Services\WalletService;
 use function config;
+use function array_merge;
 use Hyperf\DbConnection\Model\Model;
-use Hyperf\Database\Model\Relations\BelongsTo;
+use Xtwoend\Wallet\Interfaces\Wallet;
+use Xtwoend\Wallet\Interfaces\Mathable;
+use Xtwoend\Wallet\Services\WalletService;
 use Hyperf\Database\Model\Relations\MorphTo;
+use Xtwoend\Wallet\Traits\TransactionBalance;
+use Hyperf\Database\Model\Relations\BelongsTo;
+use Xtwoend\Wallet\Models\Wallet as WalletModel;
 
 /**
  * Class Transaction.
@@ -29,6 +30,8 @@ use Hyperf\Database\Model\Relations\MorphTo;
  */
 class Transaction extends Model
 {
+    use TransactionBalance;
+
     public const TYPE_DEPOSIT = 'deposit';
     public const TYPE_WITHDRAW = 'withdraw';
 
@@ -42,6 +45,7 @@ class Transaction extends Model
         'uuid',
         'type',
         'amount',
+        'balance',
         'confirmed',
         'meta',
     ];
