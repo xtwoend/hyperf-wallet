@@ -97,8 +97,8 @@ class ConfigProvider
                 [
                     'id' => 'migration',
                     'description' => 'Migration database transaction table.',
-                    'source' => __DIR__ . '/../database/22021_10_20_095608_add_balance_transaction_table.php',
-                    'destination' => BASE_PATH . '/migrations/22021_10_20_095608_add_balance_transaction_table.php',
+                    'source' => __DIR__ . '/../database/2021_10_20_095608_add_balance_transaction_table.php',
+                    'destination' => BASE_PATH . '/migrations/2021_10_20_095608_add_balance_transaction_table.php',
                 ],
             ],
         ];
