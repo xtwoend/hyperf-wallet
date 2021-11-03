@@ -7,7 +7,7 @@ use function array_key_exists;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Relations\MorphMany;
 use Xtwoend\Wallet\Models\Wallet as WalletModel;
-use Hyperf\DbConnection\Model\ModelNotFoundException;
+use Hyperf\Database\Model\ModelNotFoundException;
 
 
 /**
